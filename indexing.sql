@@ -18,33 +18,37 @@ ALTER DATABASE indexed_cars OWNER TO indexed_cars_user;
 SELECT COUNT(*) FROM car_models;
 
 \echo 1.
-SELECT DISTINCT make_title, now()
+SELECT DISTINCT make_title
   FROM car_models
   WHERE make_code = 'LAM';
+  -- 22.103 ms / 1.706 ms
 
 \echo 2.
-SELECT DISTINCT model_title, now()
+SELECT DISTINCT model_title
   FROM car_models
   WHERE make_code = 'NISSAN'
   AND model_code = 'GT-R';
+  -- Time: 24.449 ms / 0.600 ms
 
 \echo 3.
 \pset pager off
-SELECT make_code, model_code, model_title, year, now()
+SELECT make_code, model_code, model_title, year
   FROM car_models
   WHERE make_code = 'LAM';
-  -- GROUP BY model_code, model_title, year
-  -- ORDER BY model_code, model_title, year;
+  -- Time: 25.442 ms / 2.933 ms
 
 \echo 4.
-SELECT *, now()
+SELECT make_code, model_code, year
   FROM car_models
   WHERE year BETWEEN 2010 AND 2015;
+  -- Time: 162.042 ms / 159.004 ms / 88.357 ms / 63.189 ms / 47.377 ms
 
 \echo 5.
-SELECT *, now()
+SELECT *
   FROM car_models
   WHERE year = 2010;
+  -- Time: 46.585 ms
+
 
 
 \c andrew;
