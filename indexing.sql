@@ -41,5 +41,10 @@ SELECT *, now()
   FROM car_models
   WHERE year BETWEEN 2010 AND 2015;
 
+\echo 5.
+SELECT *, now()
+  FROM car_models
+  WHERE year = 2010;
+
 
 \c andrew;
